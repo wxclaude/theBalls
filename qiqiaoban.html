@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>倒计时小球</title>
+</head>
+<body>
+<canvas id="canvas" width="800" height="800" style="border:1px solid #aaa;display:block;margin:50px auto;">
+	该浏览器不支持canvas
+</canvas>
+</body>
+<script type="text/javascript">
+	var tangram=[
+		{p:[{x:0,y:0},{x:800,y:0},{x:400,y:400}],color:"#caff67"},
+		{p:[{x:0,y:0},{x:400,y:400},{x:0,y:800}],color:"#67becf"},
+		{p:[{x:800,y:0},{x:800,y:400},{x:600,y:600},{x:600,y:200}],color:"#ef3d61"},
+		{p:[{x:600,y:200},{x:600,y:600},{x:400,y:400}],color:"#f9f51a"},
+		{p:[{x:400,y:400},{x:600,y:600},{x:400,y:800},{x:200,y:600}],color:"#a594e0"},
+		{p:[{x:200,y:600},{x:400,y:800},{x:0,y:800}],color:"#fa8ecc"},
+		{p:[{x:800,y:400},{x:800,y:800},{x:400,y:800}],color:"#f6ca29"}
+	];
+	window.onload=function(){
+		var canvas= document.getElementById("canvas");
+		var context= canvas.getContext("2d");
+		for (var i = 0; i <=tangram.length; i++) {
+			draw(tangram[i],context);
+		}
+	};
+	function draw(tg,cx){
+		cx.beginPath();
+		cx.moveTo(tg.p[0].x,tg.p[0].y);
+		for (var i=1;i<tg.p.length;i++){
+			cx.lineTo(tg.p[i].x,tg.p[i].y);
+		}
+		cx.closePath();
+		cx.fillStyle=tg.color;
+		cx.fill();
+        cx.strokeStyle="black";
+        cx.lineWidth=3;
+        cx.stroke();
+	}
+</script>
+</html>
